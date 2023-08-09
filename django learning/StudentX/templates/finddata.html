@@ -1,0 +1,57 @@
+{% extends "./base.html"%}
+{% block start %}
+<div class="input-group mb-3 p-3 justify-content-center d-flex ">
+<form class="d-flex p-3 mb-3 " role="search">
+    <input class="form-control rounded col-5 " required type="number" name="search" placeholder="Roll No" aria-label="Search">
+    <button class="btn btn-outline-success " type="submit">Search</button>
+  </form>
+</div>
+<h4 class="text-center text-green">OR<i class="bi bi-emoji-smile"></i>
+</h4>
+<div class="input-group mb-3 p-3 justify-content-center d-flex ">
+    <form class="d-flex p-3 mb-3 " role="search">
+        <input class="form-control rounded col-5 " required type="text" name="nameS" placeholder="Name " aria-label="Search">
+        <button class="btn btn-outline-success " type="submit">Search</button>
+      </form>
+    </div>
+   
+
+     {% if not Students %}
+     <h1 class="text-center text-danger">Not found <i class="bi bi-emoji-sad"></i></h1>
+     {% else %}
+     <h1 class="text-center text-success">Found <i class="bi bi-emoji-smile"></i></h1>
+<div>
+<table class="table table-striped shadow-lg">
+    <thead>
+      <tr>
+        <th scope="col">S.NO</th>
+        <th scope="col">Roll No</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Address</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col">Photo</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for student in Students %}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{student.roll}}</td>
+        <td>{{student.name}}</td>
+        <td>{{student.age}}</td>
+        <td>{{student.address}}</td>
+        <td>{{student.phone}}</td>
+        <td>{{student.email}}</td>
+        <td><img src="/media/{{student.photo}}" style=" height:20vh "></td>
+        
+    </tr>
+      {% endfor %}
+      {% endif %}
+     
+
+    </tbody>
+  </table>
+  <div></div>
+{%endblock%}

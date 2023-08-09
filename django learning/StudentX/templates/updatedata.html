@@ -1,0 +1,58 @@
+{% extends "./base.html"%}
+{% block start %}
+<div class="input-group mb-3 p-3 justify-content-center d-flex ">
+    <form class="d-flex p-3 mb-3 " role="search">
+        <input class="form-control rounded col-5 " required type="number" name="search" placeholder="Roll No" aria-label="Search">
+        <button class="btn btn-outline-success " type="submit">Search</button>
+      </form>
+    </div>
+    {{Students}}
+    {{S.name}}
+    {% if not Students %}
+        <h1 class="text-center text-danger">Roll no.:{{x}} not found <i class="bi bi-emoji-sad"></i></h1>
+        <div>
+          <button class="btn btn-outline-success">
+            <a href="/adddata">click</a></button>
+        </div>
+        {% else %}
+        <h1 class="text-center text-success">Roll no.:{{x}} Found  <i class="bi bi-emoji-smile"></i></h1>
+        <div class="container  w-50 h-10 p-3"  >
+                    <form class="cal-1 h-10 mx-auto card p-3 shadow-lg"method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="mb-1">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" required class="form-control" name="name" value="{{S.name}}">
+              </div>
+              <div class="mb-1">
+                <label for="name" class="form-label">Roll no</label>
+                <input type="number" required disabled  class="form-control" name="roll" value="{{S.roll}}">
+            </div>
+              <div class="mb-1">
+                <label for="exampleInputPassword1" class="form-label">Age</label>
+                <input type="number" required class="form-control" name="age" value="{{S.age}}" >
+              </div>
+              <div class="mb-1">
+                  <label for="name" class="form-label">Address</label>
+                  <input type="text" required  class="form-control" name="address" value="{{S.address}}">
+              </div>
+              <div class="mb-1">
+                  <label for="name" class="form-label">Phone</label>
+                  <input type="number" required class="form-control" name="phone" value="{{S.phone}}" >
+              </div>
+              <div class="mb-1">
+                  <label for="name" class="form-label">Email</label>
+                  <input type="email" class="form-control" name="email" value="{{S.email}}">
+              </div>
+              <div class="mb-1">
+                  <label for="name" class="form-label">Photo</label>
+                  <input type="file" required  class="form-control" name="photo">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <div class="alert alert-secondary" role="alert">
+                {{save}}
+              </div>
+            </form>
+          </div>
+    {% endif %}
+
+{% endblock %}
